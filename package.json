@@ -1,0 +1,46 @@
+{
+  "name": "@wireboard/mcp",
+  "version": "0.1.0",
+  "description": "Official MCP server for WireBoard. Lets LLM agents query your analytics in conversation.",
+  "license": "MIT",
+  "author": "WireBoard",
+  "homepage": "https://github.com/wireboard/mcp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wireboard/mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wireboard/mcp/issues"
+  },
+  "keywords": ["wireboard", "analytics", "mcp", "llm", "claude", "agent"],
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "wireboard-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "esbuild src/index.ts --bundle --platform=node --target=node18 --format=esm --outfile=dist/index.js --banner:js=\"#!/usr/bin/env node\nimport { createRequire } from 'module'; const require = createRequire(import.meta.url);\" --legal-comments=none",
+    "build:mcpb": "./scripts/build-mcpb.sh",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@wireboard/api": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

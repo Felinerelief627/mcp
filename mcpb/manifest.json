@@ -1,0 +1,48 @@
+{
+  "manifest_version": "0.4",
+  "name": "wireboard-mcp",
+  "display_name": "WireBoard",
+  "version": "0.1.0",
+  "description": "Query your WireBoard analytics in conversation. Real-time and historical visitor data, custom events, and per-site reports as MCP tools. Requires an API token from https://wireboard.io/dashboard/settings/api",
+  "long_description": "Official WireBoard MCP server. Lets LLM agents (Claude Desktop, Cursor, VS Code, etc.) query your real-time and historical analytics in conversation.\n\n**Before installing: grab your API token.** Mint one at https://wireboard.io/dashboard/settings/api with the `analytics:read` and `live:read` abilities. The installer will prompt for it and store it securely in your OS keychain.\n\nIncludes ten tools that wrap the WireBoard REST and Live APIs: list sites, get account info, fetch period totals, time-series, daily history, dimension breakdowns, top URLs with filters, custom event queries, live visitor snapshots, and the dimensions catalogue. Built on top of the official @wireboard/api JavaScript SDK.\n\nAll tools are read-only and accept natural date ranges like \"last 7 days\" or \"this month\".",
+  "author": {
+    "name": "WireBoard",
+    "email": "info@wireboard.io",
+    "url": "https://wireboard.io"
+  },
+  "homepage": "https://wireboard.io/docs/api-overview",
+  "documentation": "https://wireboard.io/docs/api-overview",
+  "support": "https://github.com/wireboard/mcp/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wireboard/mcp"
+  },
+  "license": "MIT",
+  "keywords": ["wireboard", "analytics", "real-time", "sse", "llm", "claude", "agent"],
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/dist/index.js"],
+      "env": {
+        "WIREBOARD_TOKEN": "${user_config.wireboard_token}"
+      }
+    }
+  },
+  "user_config": {
+    "wireboard_token": {
+      "type": "string",
+      "title": "WireBoard API Token",
+      "description": "Your WireBoard API bearer token. Mint one at https://wireboard.io/dashboard/settings/api with the analytics:read and live:read abilities. Stored securely in your OS keychain.",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "compatibility": {
+    "runtimes": {
+      "node": ">=18"
+    }
+  }
+}

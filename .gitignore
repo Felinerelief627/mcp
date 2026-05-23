@@ -1,0 +1,19 @@
+# Build / dist
+dist/
+build/
+node_modules/
+
+# Tooling caches
+.cache/
+
+# Env
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
